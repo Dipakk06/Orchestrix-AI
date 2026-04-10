@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Student Dashboard</h2>
+<p class="text-muted">Daily Goal: {{ daily_goal }}</p>
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Average Quiz</h6><h3>{{ avg_score }}%</h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Risk Radar</h6><h3>{{ risk_probability }}%</h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>XP Points</h6><h3>{{ xp_points }}</h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Leaderboard Rank</h6><h3>#{{ leaderboard_rank }}</h3></div></div></div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5>Weakness Heatmap</h5>
+    <canvas id="weaknessChart" height="120"></canvas>
+  </div>
+</div>
+<script>
+const ctx = document.getElementById('weaknessChart');
+new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: {{ weakness_labels|safe }},
+    datasets: [{
+      label: 'Weakness Score',
+      data: {{ weakness_values|safe }},
+      fill: true,
+      borderColor: 'rgb(220, 53, 69)',
+      backgroundColor: 'rgba(220,53,69,0.2)'
+    }]
+  }
+});
+</script>
+{% endblock %}
