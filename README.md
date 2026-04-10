@@ -14,8 +14,10 @@ Edu-Net is a Django web application that demonstrates adaptive learning logic wi
 ### Option 1: One command (recommended)
 
 ```bash
-./scripts/run_local.sh
+./run
 ```
+
+(`./run` is a tiny wrapper around `./scripts/run_local.sh`.)
 
 This command will:
 1. Create a virtual environment (`.venv`) if missing
