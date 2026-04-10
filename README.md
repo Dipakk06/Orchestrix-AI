@@ -1,6 +1,6 @@
 # Edu-Net (Adaptive Learning Demo)
 
-Edu-Net is a working Django web application that demonstrates adaptive learning logic:
+Edu-Net is a Django web application that demonstrates adaptive learning logic with a thesis-friendly scope:
 
 - Custom users (student/teacher)
 - Course/module/lesson structure
@@ -11,20 +11,50 @@ Edu-Net is a working Django web application that demonstrates adaptive learning 
 
 ## Quick Start
 
+### Option 1: One command (recommended)
+
+```bash
+./scripts/run_local.sh
+```
+
+This command will:
+1. Create a virtual environment (`.venv`) if missing
+2. Install dependencies (if not already installed)
+3. Run migrations
+4. Seed demo data
+5. Start the dev server on `127.0.0.1:8000`
+
+### Option 2: Manual setup
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py createsuperuser
 python manage.py seed_demo
 python manage.py runserver
 ```
 
-Then open:
+## Demo Accounts
+
+After `seed_demo`, use:
+
+- Student: `student_demo` / `demo1234`
+- Teacher: `teacher_demo` / `demo1234`
+
+## App URLs
+
 - `/accounts/login/`
 - `/dashboard/`
 - `/courses/`
+- `/adaptive/skill-tree/`
+
+## Troubleshooting
+
+If installation fails with proxy/network errors:
+
+- Ensure `HTTP_PROXY` and `HTTPS_PROXY` are correctly configured for your environment.
+- If outbound internet is blocked, dependency installation from PyPI will fail. In that case, install dependencies from an internal mirror or prebuilt wheel cache.
 
 ## Architecture
 
