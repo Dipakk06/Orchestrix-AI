@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Courses</h2>
+<div class="list-group">
+  {% for course in courses %}
+    <a class="list-group-item list-group-item-action" href="{% url 'courses:detail' course.id %}">{{ course.title }}</a>
+  {% empty %}
+    <p>No courses yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

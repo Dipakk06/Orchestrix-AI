@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Skill Tree: {{ course.title }}</h2>
+<div class="row row-cols-1 row-cols-md-2 g-3">
+  {% for item in progress %}
+  <div class="col">
+    <div class="card {% if item.unlocked %}border-success{% else %}border-secondary{% endif %}">
+      <div class="card-body">
+        <h5>{{ item.node.title }}</h5>
+        <p>Score: {{ item.score }}%</p>
+        <p>Status: {% if item.unlocked %}<span class="text-success">Unlocked</span>{% else %}<span class="text-muted">Locked</span>{% endif %}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

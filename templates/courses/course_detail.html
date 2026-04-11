@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ course.title }}</h2>
+<p>{{ course.description }}</p>
+<a class="btn btn-outline-primary mb-3" href="{% url 'adaptive_engine:skill_tree' course.id %}">Open Skill Tree</a>
+<table class="table table-striped">
+  <tr><th>Concept</th><th>Score</th><th>Status</th><th>Action</th></tr>
+  {% for item in progress %}
+    <tr>
+      <td>{{ item.node.title }}</td>
+      <td>{{ item.score }}%</td>
+      <td>{% if item.unlocked %}✅ Unlocked{% else %}🔒 Locked{% endif %}</td>
+      <td>
+        {% if item.needs_remediation %}
+          <a href="{{ item.node.remediation_video_url }}" target="_blank">Watch Remediation</a>
+        {% elif item.fast_track %}
+          <span class="badge bg-success">Fast Track Available</span>
+        {% else %}
+          Continue
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
