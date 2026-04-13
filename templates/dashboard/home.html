@@ -14,15 +14,20 @@
     <canvas id="weaknessChart" height="120"></canvas>
   </div>
 </div>
+{{ weakness_labels|json_script:"weakness-labels-data" }}
+{{ weakness_values|json_script:"weakness-values-data" }}
 <script>
 const ctx = document.getElementById('weaknessChart');
+const weaknessLabels = JSON.parse(document.getElementById('weakness-labels-data').textContent);
+const weaknessValues = JSON.parse(document.getElementById('weakness-values-data').textContent);
+
 new Chart(ctx, {
   type: 'radar',
   data: {
-    labels: {{ weakness_labels|safe }},
+    labels: weaknessLabels,
     datasets: [{
       label: 'Weakness Score',
-      data: {{ weakness_values|safe }},
+      data: weaknessValues,
       fill: true,
       borderColor: 'rgb(220, 53, 69)',
       backgroundColor: 'rgba(220,53,69,0.2)'
